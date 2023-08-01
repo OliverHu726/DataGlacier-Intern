@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iris Dashboard</title>
+</head>
+<body>
+    <h1>Iris Dashboard</h1>
+
+    <!-- EDA: Scatter plot for Sepal Length vs Sepal Width -->
+    <h2>Scatter plot: Sepal Length vs Sepal Width</h2>
+    <img src="{{ url_for('static', filename='scatter_sepal.png') }}" alt="Scatter Sepal" width="600">
+
+    <!-- EDA: Scatter plot for Petal Length vs Petal Width -->
+    <h2>Scatter plot: Petal Length vs Petal Width</h2>
+    <img src="{{ url_for('static', filename='scatter_petal.png') }}" alt="Scatter Petal" width="600">
+
+    <!-- EDA: Pairplot of Iris Dataset -->
+    <h2>Pairplot of Iris Dataset</h2>
+    <img src="{{ url_for('static', filename='pairplot.png') }}" alt="Pairplot" width="800">
+
+    <!-- Machine Learning Model Prediction Form -->
+    <h2>Machine Learning Model Prediction</h2>
+    <form action="/predict" method="post">
+        <label for="sepal_length">Sepal Length (cm):</label>
+        <input type="number" step="0.1" name="sepal_length" id="sepal_length" required><br>
+
+        <label for="sepal_width">Sepal Width (cm):</label>
+        <input type="number" step="0.1" name="sepal_width" id="sepal_width" required><br>
+
+        <label for="petal_length">Petal Length (cm):</label>
+        <input type="number" step="0.1" name="petal_length" id="petal_length" required><br>
+
+        <label for="petal_width">Petal Width (cm):</label>
+        <input type="number" step="0.1" name="petal_width" id="petal_width" required><br>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    <!-- Display the prediction -->
+    {% if prediction is defined %}
+    <h2>Prediction:</h2>
+    <p>The predicted target class is: {{ prediction }}</p>
+    {% endif %}
+</body>
+</html>
